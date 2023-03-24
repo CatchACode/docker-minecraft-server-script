@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+<<<<<<< HEAD
 class NewServer:
     
     def main():
@@ -72,3 +73,5 @@ f"""Choose which type of minecraft server you want to start!
 
 if __name__ == "__main__":
     NewServer.main()
+=======
+>>>>>>> refs/remotes/origin/main
