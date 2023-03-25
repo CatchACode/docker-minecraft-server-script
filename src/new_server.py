@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 
 class NewServer:
@@ -29,7 +29,8 @@ f"""Choose which type of minecraft server you want to start!
 
         match type.lower():
             case "1" | "Vanilla" | "vanilla":
-                pass
+                import VanillaServer 
+                VanillaServer.VanillaServer.setup()
             case "2" | "Forge" | "forge":
                 pass
             case "3" | "Fabric" | "fabric":
