@@ -27,11 +27,16 @@ def VanillaServer():
                 break;
             else:
                 print("Please enter a number in the range 1024:66525")
-    
+        ports += f"-p {port}:{port}"
+
         while True:
             secondary_ports = input("Enter any other ports required by the server. Leave empty if none are required. Separate the ports with a space and you can reserve a range of ports using the format from:to")
-            
-
+            for port in secondary_ports:
+                if (f":" in port):
+                    ports += f" -p {port}"
+                else:
+                    ports += f" +p {port}:{port}"
+                
 
 
     # returns a string containing the docker flag setting the minecraft Version
