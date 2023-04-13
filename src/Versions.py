@@ -1,10 +1,10 @@
-#!/usr/bin/python3
 
+import requests
 class Versions:
     minecraft_versions =[
-            "latest","snapshot",
-            "1.19.4","1.19.3","1.19.2","1.19.1","1.19",
-            "1.18.2","1.18.1","1.18",
+        "latest","snapshot",
+        "1.19.4","1.19.3","1.19.2","1.19.1","1.19",
+        "1.18.2","1.18.1","1.18",
             "1.17.1","1.17",
             "1.16.5","1.16.4","1.16.3","1.16.2","1.16.1","1.16",
             "1.15.2","1.15.1","1.15",
@@ -24,14 +24,21 @@ class Versions:
             "1.1",
             "1.0.1","1.0",
             ]
-    java_versions =[
-            "latest","java8","java8-jdk","java8-multiarch","java8-open9","java8-graalvm-ce","java11","java11-jdk",
-            "java11-jdk","java11-openj9","java17","java17-jdk","java17-openj9","java17-graalvm-ce","java17-alpine",
-            "java19"
-            ]
+    java_versions = [
+        "latest", "java8", "java8-jdk", "java8-multiarch", "java8-open9", "java8-graalvm-ce", "java11", "java11-jdk",
+        "java11-jdk", "java11-openj9", "java17", "java17-jdk", "java17-openj9", "java17-graalvm-ce", "java17-alpine",
+        "java19"
+    ]
 
-    def isValidMinecraftVersion(version):
-        return version in Versions.minecraft_versions
+def checkForgeVersion(minecraft_version,forge_version):
+    try:
+        r = requests.head(f"https://maven.minecraftforge.net/net/minecraftforge/forge/{minecraft_version}-{forge_version}/forge-{minecraft_version}-{forge_version}-installer.jar")
+        if r.status_code == 200:
+            return True
+        else:
+            return False
+    except requests.ConnectionError:
+        return False
 
-    def isVaildJavaVersion(version):
-        return version in Versions.java_versions
+def checkFabricVersion(minecraft_version, fabric_version):
+
